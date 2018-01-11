@@ -1,0 +1,37 @@
+{
+  "name": "mooc",
+  "version": "1.0.0",
+  "description": "mooc code",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bower": "^1.8.2",
+    "express": "^4.16.2",
+    "grunt": "^1.0.1",
+    "jade": "^1.11.0",
+    "moment": "^2.20.1",
+    "mongoose": "^4.13.7",
+    "serve-static": "^1.13.1",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "bcrypt": "^1.0.3",
+    "connect-mongo": "^2.0.1",
+    "connect-multiparty": "^2.1.0",
+    "cookie-parser": "^1.4.3",
+    "express-session": "^1.15.6",
+    "grunt-concurrent": "^2.3.1",
+    "grunt-contrib-nodemon": "^0.5.4",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-nodemon": "^0.4.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mooc",
+    "movie"
+  ],
+  "author": "",
+  "license": "ISC"
+}

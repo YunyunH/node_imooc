@@ -1,0 +1,13 @@
+extends ../layout
+block content
+    .container
+        .row
+            form.form-horizontal(method="POST", action="/admin/category")
+                .form-group
+                    label.col-sm-2.control-label(for="inputCategory") 電影分類
+                    .col-sm-10
+                        input#inputCategory.form-control(type="text", name="category[name]", value=category.name)
+                
+                .form-group
+                   .col-sm-offset-2.col-sm-10
+                   button.btn.btn-default(type="submit") 錄入
