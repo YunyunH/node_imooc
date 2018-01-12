@@ -1,4 +1,5 @@
 var Category = require('../models/category');
+var _ = require('underscore');
 
 //admin page
 exports.new = function(req, res) {
@@ -12,13 +13,34 @@ exports.new = function(req, res) {
 exports.save = function(req, res) {
     var _category = req.body.category;
     var category = new Category(_category);
+    var id = req.body._id;
+    console.log(id)
+    if (id) {
+        Category.findById(id, function(err, category) {
+            if (err) {
+                console.log(err)
+            }
+            console.log(category);
+            console.log(_category);
+            _category = _.extend(category, _category);
+            console.log(_category);
+            _category.save(function(err, category) {
+                if (err) {
+                    console.log(err)
+                }
+                res.redirect('/admin/category/list');
+            })
+        })
+    } else {
+        category.save(function(err, movie) {
+            if (err) {
+                console.log(err)
+            }
+            res.redirect('/admin/category/list');
+        })
+    }
 
-    category.save(function(err, movie) {
-        if (err) {
-            console.log(err)
-        }
-        res.redirect('/admin/category/list');
-    })
+
 }
 
 
@@ -35,17 +57,34 @@ exports.list = function(req, res) {
     });
 }
 
-// //list delete
-// exports.del = function(req, res) {
-//     // app.delete('/admin/list', function(req, res) {
-//     var id = req.query.id;
-//     if (id) {
-//         Movie.remove({ _id: id }, function(err, movie) {
-//             if (err) {
-//                 console.log(err)
-//             } else {
-//                 res.json({ success: 1 })
-//             }
-//         })
-//     }
-// }
+//category update
+exports.update = function(req, res) {
+    var id = req.params.id;
+    if (id) {
+        Category.findById(id, function(err, category) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render('category_admin', {
+                    title: 'mooc update!',
+                    category: category
+                })
+            }
+        })
+
+    }
+}
+
+// list delete
+exports.del = function(req, res) {
+    var id = req.query.id;
+    if (id) {
+        Category.remove({ _id: id }, function(err, category) {
+            if (err) {
+                console.log(err)
+            } else {
+                res.json({ success: 1 })
+            }
+        })
+    }
+}

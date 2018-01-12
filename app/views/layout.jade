@@ -4,6 +4,27 @@ html
         meta(charset="utf-8")
         title #{title}
         include ./includes/head
+        style.
+            .masonry-container {
+                //- column-width: 320px;
+                //- column-gap: 0px;
+                -moz-column-count:5;
+                -moz-column-gap:10px;
+                -moz-column-rule:0px solid #ff0000;
+                -webkit-column-count:5;
+                -webkit-column-gap:10px;
+                -webkit-column-rule:0px solid #ff0000;
+                -o-column-count:5;
+                -o-column-gap:10px;
+                -o-column-rule:0px solid #ff0000; 
+            }
+            .masonry-item {
+                display: inline-block;
+                //- padding: 15px;
+                //- width: 20%;
+            }
     body
         include ./includes/header
-        block content
+        .wrapper(style="margin-bottom: 100px")
+            block content
+        include ./includes/footer

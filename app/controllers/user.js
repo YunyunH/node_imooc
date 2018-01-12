@@ -64,12 +64,8 @@ exports.signin = function(req, res) {
             if (isMatch) {
                 req.session.user = user;
 
-                if (user.role > 10) {
-                    return res.redirect('/admin/index')
-                } else {
-                    return res.redirect('/');
-                }
-                
+                return res.redirect('/');
+
             } else {
                 return res.redirect('/signin');
             }
@@ -118,4 +114,32 @@ exports.adminRequired = function(req, res, next) {
     }
 
     next();
+}
+
+
+//del user
+exports.del = function(req, res) {
+    var id = req.query.id;
+    if (id) {
+        User.findOne({ _id: id }, function(err, user) {
+            console.log(user)
+            if (err) {
+                console.log(err)
+            } else if(user.role > 10){
+                res.json({ success: 0, msg: '禁止刪除管理員' })
+                
+            } else {
+                User.remove({ _id: id }, function(err, user) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        res.json({ success: 1 })
+                    }
+                })
+            }
+
+        })
+
+
+    }
 }

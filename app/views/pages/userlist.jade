@@ -5,18 +5,14 @@ block content
             table.table.table-hover.table-bordered
                 thead
                     tr
-                        th 名稱
-                        th 時間
-                        th 查看
-                        th 更新
+                        th 用戶名
+                        th 創建時間
                         th 刪除
                 tbody
                     each item in users
                         tr(class="item-id-#{item._id}")
                             td #{item.name}
-                            td #{moment(item.meta.updateAt).format('DD/MM/YYYY')}
-                            td: a(target="_blank", href="../movie/#{item.id}") 查看
-                            td: a(target="_blank", href="../admin/update/#{item.id}") 修改
+                            td #{moment(item.meta.updateAt).format('YYYY/MM/DD')}
                             td
                                 button.btn.btn-danger.del(type="button", data-id="#{item._id}") 刪除
-    //- script(src="/static/js/admin.js")
+    script(src="/static/js/user.js")

@@ -7,11 +7,10 @@ var path = require('path');
 
 //detail page
 exports.detail = function(req, res) {
-    // app.get('/movie/:id', function(req, res) {
     var id = req.params.id;
     Movie.findById(id, function(err, movie) {
-        Movie.update({_id: id}, {$inc: {pv: 1}}, function(err){
-            if(err) {
+        Movie.update({ _id: id }, { $inc: { pv: 1 } }, function(err) {
+            if (err) {
                 console.log(err)
             }
         });
@@ -62,19 +61,18 @@ exports.update = function(req, res) {
 }
 
 
-exports.savePoster = function(req, res, next){
+exports.savePoster = function(req, res, next) {
     var posterData = req.files.uploadPoster;
     var filePath = posterData.path;
     var originalFilename = posterData.originalFilename;
 
     console.log(req.files)
-    if(originalFilename) {
+    if (originalFilename) {
         fs.readFile(filePath, function(err, data) {
             var timestamp = Date.now();
             var type = posterData.type.split('/')[1];
             var poster = timestamp + '.' + type;
             var newPath = path.join(__dirname, '../../', '/public/upload/' + poster);
-            // var newPath = path.join(__dirname, '../../', '/public/upload' + poster);
 
             fs.writeFile(newPath, data, function(err) {
                 req.poster = poster;
@@ -88,12 +86,11 @@ exports.savePoster = function(req, res, next){
 
 //admin post movie
 exports.save = function(req, res) {
-    // app.post('/admin/movie/new', function(req, res) {
     var id = req.body.movie._id;
     var movieObj = req.body.movie;
     var _movie;
 
-    if(req.poster) {
+    if (req.poster) {
         movieObj.poster = req.poster;
     }
     if (id) {
@@ -121,23 +118,14 @@ exports.save = function(req, res) {
             }
 
             if (categoryId) {
-                Category.findById(categoryId, function(err, category) {
-                    category.movies.push(movie._id);
-                    category.save(function(err, category) {
-                        res.redirect('/movie/' + movie._id);
-                    });
-                });
+                res.redirect('/movie/' + movie._id);
             } else if (categoryName) {
                 var category = new Category({
                     name: categoryName,
                     movies: [movie._id]
                 });
                 category.save(function(err, category) {
-                    movie.category = category._id;
-                    movie.save(function(err, movie) {
-                        res.redirect('/movie/' + movie._id);
-                    })
-                    
+                    res.redirect('/movie/' + movie._id);
                 });
             }
 
@@ -146,23 +134,29 @@ exports.save = function(req, res) {
 }
 
 
-//list page\
+//list page
 exports.list = function(req, res) {
-    // app.get('/admin/list', function(req, res) {
-    Movie.fetch(function(err, movies) {
-        if (err) {
-            console.log(err)
-        }
-        res.render('list', {
-            title: 'mooc列表',
-            movies: movies
-        })
-    });
+    var page = parseInt(req.query.page);
+    var cont = 10;
+    Movie
+        .find({})
+        .skip(page * cont)
+        .limit(cont)
+        .exec(function(err, movies) {
+            if (err) {
+                console.log(err)
+            }
+            res.render('list', {
+                title: 'mooc列表',
+                movies: movies,
+                page: page,
+                lastPage: movies.length < cont
+            });
+        });
 }
 
 //list delete
 exports.del = function(req, res) {
-    // app.delete('/admin/list', function(req, res) {
     var id = req.query.id;
     if (id) {
         Movie.remove({ _id: id }, function(err, movie) {

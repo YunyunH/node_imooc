@@ -3,6 +3,7 @@ block content
     .container
         .row
             form.form-horizontal(method="POST", action="/admin/movie", enctype="multipart/form-data")
+                input(type="hidden", name="orignCategory" value=movie.category)
                 .form-group
                     label.col-sm-2.control-label(for="douban") 豆瓣同步
                     .col-sm-10
@@ -60,6 +61,6 @@ block content
                     .col-sm-10
                         input#inputSummary.form-control(type="text", name="movie[summary]", value=movie.summary)
                 .form-group
-                   .col-sm-offset-2.col-sm-10
-                   button.btn.btn-default(type="submit") 錄入
+                    .col-sm-offset-2.col-sm-10
+                        button.btn.btn-default(type="submit") 錄入
     script(src='/static/js/admin.js')

@@ -23,8 +23,15 @@ block content
                             td #{item.year}
                             td #{moment(item.meta.updateAt).format('DD/MM/YYYY')}
                             td #{item.pv}
-                            td: a(target="_blank", href="/movie/#{item.id}") 查看
-                            td: a(target="_blank", href="/admin/movie/update/#{item.id}") 修改
+                            td: a(href="/movie/#{item.id}") 查看
+                            td: a(href="/admin/movie/update/#{item.id}") 修改
                             td
                                 button.btn.btn-danger.del(type="button", data-id="#{item._id}") 刪除
+        ul.pager
+            if page > 0
+                li
+                    a(href='/admin/movie/list?page=#{page - 1}') 上一页
+            if !lastPage
+                li
+                    a(href='/admin/movie/list?page=#{page + 1}') 下一页
     script(src="/static/js/admin.js")
