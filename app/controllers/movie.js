@@ -21,7 +21,7 @@ exports.detail = function(req, res) {
             .exec(function(err, comments) {
                 console.log(comments)
                 res.render('detail', {
-                    title: 'mooc詳情頁',
+                    title: '電影詳情',
                     movie: movie,
                     comments: comments
                 })
@@ -34,7 +34,7 @@ exports.detail = function(req, res) {
 exports.new = function(req, res) {
     Category.find({}, function(err, categories) {
         res.render('admin', {
-            title: 'mooc 後台錄入頁',
+            title: '後台錄入頁',
             categories: categories,
             movie: {}
         })
@@ -50,7 +50,7 @@ exports.update = function(req, res) {
         Movie.findById(id, function(err, movie) {
             Category.find({}, function(err, categories) {
                 res.render('admin', {
-                    title: 'mooc update!',
+                    title: '電影更新',
                     movie: movie,
                     categories: categories
                 })
@@ -153,7 +153,7 @@ exports.list = function(req, res) {
                 console.log(err)
             }
             res.render('list', {
-                title: 'mooc列表',
+                title: '電影列表',
                 movies: movies,
                 page: page,
                 lastPage: movies.length < cont

@@ -17,5 +17,8 @@ block content
                                             img(src="/static/upload/#{item.poster}", alt="#{item.title}")
                                     .caption
                                         h3 #{item.title}
-                                        p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 觀看預告片
+                                        if movie.flash
+                                            p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 立即觀看
+                                        else
+                                            p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 查看簡介
            

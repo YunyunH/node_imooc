@@ -8,7 +8,7 @@ exports.index = function(req, res) {
         }
         Movie.find({}, function(err, movies) {
             res.render('index', {
-                title: 'mooc首頁',
+                title: '首頁',
                 categories: categories,
                 movies: movies
             })
@@ -35,7 +35,7 @@ exports.search = function(req, res) {
                     console.log(err);
                 }
                 res.render('results', {
-                    title: 'mooc 結果列表頁面',
+                    title: '結果列表頁面',
                     keyword: category.name,
                     query: 'cat=' + catId,
                     movies: movies
@@ -58,7 +58,7 @@ exports.search = function(req, res) {
                 var results = movies;
 
                 res.render('results', {
-                    title: 'mooc 結果列表頁面',
+                    title: '結果列表頁面',
                     keyword: q,
                     query: 'q=' + q,
                     movies: results

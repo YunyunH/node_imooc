@@ -4,7 +4,7 @@ var _ = require('underscore');
 //admin page
 exports.new = function(req, res) {
     res.render('category_admin', {
-        title: 'mooc 後台分類錄入頁',
+        title: '電影分類錄入頁',
         category: {}
     })
 }
@@ -51,7 +51,7 @@ exports.list = function(req, res) {
             console.log(err)
         }
         res.render('categorylist', {
-            title: 'mooc 分類列表頁',
+            title: '電影分類列表',
             categories: categories
         })
     });
