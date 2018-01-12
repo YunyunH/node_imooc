@@ -17,7 +17,7 @@ block content
                                             img(src="/static/upload/#{item.poster}", alt="#{item.title}")
                                     .caption
                                         h3 #{item.title}
-                                        if movie.flash
+                                        if item.flash
                                             p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 立即觀看
                                         else
                                             p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 查看簡介

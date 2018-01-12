@@ -1,6 +1,7 @@
 .navbar.navbar-fixed-top.navbar-default
     .container
         .collapse.navbar-collapse
+            a.navbar-brand(href="#") #{title}
             if user && user.role > 10
                 ul.nav.navbar-nav
                     li
@@ -21,8 +22,4 @@
                     span.input-group-btn
                         button.btn.btn-default(type='submit') 搜索
 
-.container(style="margin-top: 20px")
-    .row
-        .page-header.clearfix
-            h1=title重度科幻迷
-            small 
+p(style="margin-top: 100px;")  
