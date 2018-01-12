@@ -32,7 +32,7 @@ exports.save = function(req, res) {
             })
         })
     } else {
-        category.save(function(err, movie) {
+        category.save(function(err, category) {
             if (err) {
                 console.log(err)
             }
