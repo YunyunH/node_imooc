@@ -12,15 +12,25 @@ block content
                             if cat._id.toString() == movie.category.toString()
                                 .masonry-item
                                     .thumbnail
-                                        a(href="/movie/#{movie._id}")
-                                            if movie.poster.indexOf('http') > -1
-                                                img(src="#{movie.poster}", alt="#{movie.title}")
-                                            else
-                                                img(src="/static/upload/#{movie.poster}", alt="#{movie.title}")
-                                        .caption
-                                            h3 #{movie.title}
-                                            p: a.btn.btn-primary(href="/movie/#{movie._id}", role="button") 觀看預告片
-        
+                                        if movie.flash
+                                            a(href="/movie/#{movie._id}")
+                                                if movie.poster.indexOf('http') > -1
+                                                    img(src="#{movie.poster}", alt="#{movie.title}")
+                                                else
+                                                    img(src="/static/upload/#{movie.poster}", alt="#{movie.title}")
+                                            .caption
+                                                h3 #{movie.title}
+                                                p: a.btn.btn-primary(href="/movie/#{movie._id}", role="button") 立即觀看
+                                        else
+                                            a(href="/movie/#{movie._id}")
+                                                if movie.poster.indexOf('http') > -1
+                                                    img(src="#{movie.poster}", alt="#{movie.title}")
+                                                else
+                                                    img(src="/static/upload/#{movie.poster}", alt="#{movie.title}")
+                                            .caption
+                                                h3 #{movie.title}
+                                                p: a.btn.btn-primary(href="/movie/#{movie._id}", role="button") 查看簡介
+            
 
                         
                              
