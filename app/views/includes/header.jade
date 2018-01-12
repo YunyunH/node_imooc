@@ -1,26 +1,28 @@
-.container
-    .row
-        .page-header.clearfix(style="border-bottom: none;")
-            h1=title
-            .col-md-4
-                small 重度科幻迷
-            .col-md-8
-                form(method='GET', action='/results')
-                    .input-group.col-sm-4.pull-right
-                        input.form-control(type='text', name='q')
-                        span.input-group-btn
-                            button.btn.btn-default(type='submit') 搜索
+.navbar.navbar-fixed-top.navbar-default
+    .container
+        .collapse.navbar-collapse
             if user && user.role > 10
-                ul.nav.nav-tabs(style="margin-bottom: 20px")
-                    li(role="presentation")
+                ul.nav.navbar-nav
+                    li
                         a(href="/") 首頁
-                    li(role="presentation")
+                    li
                         a(href="/admin/user/list") 用戶列表
-                    li(role="presentation")
+                    li
                         a(href="/admin/movie/list?page=0") 電影列表
-                    li(role="presentation")
+                    li
                         a(href="/admin/movie/new") 新增電影
-                    li(role="presentation")
+                    li
                         a(href="/admin/category/list") 電影分類列表
-                    li(role="presentation")
+                    li
                         a(href="/admin/category/new") 新增電影分類
+            form(method='GET', action='/results')
+                .input-group.col-sm-4.pull-right(style="margin: 10px 0")
+                    input.form-control(type='text', name='q')
+                    span.input-group-btn
+                        button.btn.btn-default(type='submit') 搜索
+
+.container(style="margin-top: 20px")
+    .row
+        .page-header.clearfix
+            h1=title
+            small 重度科幻迷
